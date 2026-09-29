@@ -4,6 +4,8 @@ setup(
     name="abangle",
     version="0.1.0",
     packages=find_packages(),
+    package_data={"abangle": ["data/*"]},
+    include_package_data=True,
     install_requires=[
         "anarci",
         "biopython",
