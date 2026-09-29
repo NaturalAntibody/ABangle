@@ -38,7 +38,12 @@ from .number import (
         )
 
 path = pathlib.Path(__file__).parent
-data_path = path.parent/'data'
+repo_path = path.parent
+# Mirrors the analyse.py data path fallback: an installed package may bundle data/
+# inside the package directory, while the repo keeps it alongside the source tree.
+data_path = path/'data'
+if not data_path.is_dir():
+    data_path = repo_path/'data'
 
 # load in coreset residue number dictionary
 with open(data_path/'coresets.json') as f:

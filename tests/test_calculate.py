@@ -1,6 +1,17 @@
+from pathlib import Path
+
 import pytest
 from abangle.calculate import *
 from abangle.number import *
+
+
+def test_calculate_uses_repo_data_directory():
+    """Mirrors test_analyse.py: data/ isn't bundled inside the package yet, so the
+    fallback to the repo-root data/ directory is what actually resolves today."""
+    expected = Path(__file__).resolve().parents[1] / "data"
+
+    assert Path(data_path) == expected
+
 
 @pytest.mark.parametrize(
         "fname,expected_angles", 
