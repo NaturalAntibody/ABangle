@@ -5,10 +5,10 @@ from abangle.calculate import *
 from abangle.number import *
 
 
-def test_calculate_uses_repo_data_directory():
-    """Mirrors test_analyse.py: data/ isn't bundled inside the package yet, so the
-    fallback to the repo-root data/ directory is what actually resolves today."""
-    expected = Path(__file__).resolve().parents[1] / "data"
+def test_calculate_uses_packaged_data_directory():
+    """data/ now lives inside abangle/ (see setup.py package_data), so the primary
+    path resolves directly; the repo-root fallback is no longer exercised here."""
+    expected = Path(__file__).resolve().parents[1] / "abangle" / "data"
 
     assert Path(data_path) == expected
 
